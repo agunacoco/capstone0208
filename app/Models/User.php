@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'google_id',
+        'twitter_id',
     ];
 
     /**
@@ -41,4 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function concerts()
+    {
+        return $this->belongsToMany(Concert::class)->withPivot('use', 'gRank', 'pRank');
+    }
 }
